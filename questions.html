@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retour : 3 questions</title>
+<style>
+  body { margin: 0; font-family: Georgia, serif; background: #FFF8EF; color: #2B1D14; line-height: 1.5; }
+  main { max-width: 480px; margin: 0 auto; padding: 24px 20px; }
+  .barre { height: 8px; background: #EADBC8; border-radius: 4px; margin-bottom: 28px; }
+  .barre div { height: 8px; background: #C8381E; border-radius: 4px; width: 0; transition: width .3s; }
+  h1 { font-size: 1.7rem; line-height: 1.2; margin: 0 0 20px; }
+  button { display: block; width: 100%; text-align: left; background: #fff; border: 2px solid #2B1D14; color: #2B1D14; font-family: inherit; font-size: 1.15rem; padding: 18px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; }
+  button:active { background: #C8381E; color: #fff; border-color: #C8381E; }
+  .gros { font-size: 2.4rem; font-weight: bold; color: #C8381E; margin: 8px 0; }
+  .note { font-size: .9rem; color: #6B5646; }
+  a.bouton { display: block; text-align: center; background: #C8381E; color: #fff; text-decoration: none; font-size: 1.2rem; font-weight: bold; padding: 18px; border-radius: 12px; margin-top: 24px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="barre"><div id="progres"></div></div>
+  <div id="ecran"></div>
+</main>
+<script>
+var questions = [
+  { t: "Combien de clients servez-vous par jour ?", o: [["Environ 30", 30], ["Environ 80", 80], ["Environ 150", 150]] },
+  { t: "Combien dépense un client en moyenne ?", o: [["Environ 12 €", 12], ["Environ 20 €", 20], ["Environ 35 €", 35]] },
+  { t: "Aujourd'hui, que faites-vous pour faire revenir vos clients ?", o: [["Rien du tout", "rien"], ["Un peu, quand j'y pense", "peu"], ["J'ai déjà un système", "systeme"]] }
+];
+var reponses = [];
+var etape = 0;
+var ecran = document.getElementById("ecran");
+var progres = document.getElementById("progres");
+
+function afficher() {
+  if (etape >= questions.length) { resultat(); return; }
+  progres.style.width = ((etape + 1) / (questions.length + 1) * 100) + "%";
+  var q = questions[etape];
+  var html = "<p class='note'>Question " + (etape + 1) + " sur " + questions.length + "</p><h1>" + q.t + "</h1>";
+  for (var i = 0; i < q.o.length; i++) {
+    html += "<button onclick='choisir(" + i + ")'>" + q.o[i][0] + "</button>";
+  }
+  ecran.innerHTML = html;
+}
+
+function choisir(i) {
+  reponses.push(questions[etape].o[i][1]);
+  etape++;
+  afficher();
+}
+
+function resultat() {
+  progres.style.width = "100%";
+  var clientsMois = reponses[0] * 26;
+  var gain = Math.round(clientsMois * 0.02 * reponses[1]);
+  var phrase = "Vous n'avez aucun rappel : chaque client qui oublie est perdu.";
+  if (reponses[2] === "peu") phrase = "Vous relancez parfois, mais sans régularité : beaucoup de clients passent entre les mailles.";
+  if (reponses[2] === "systeme") phrase = "Vous avez déjà un système : Retour peut le rendre automatique et chiffré.";
+  ecran.innerHTML =
+    "<h1>Votre résultat</h1>" +
+    "<p>Vous servez environ <b>" + clientsMois + " clients par mois</b>, avec un panier moyen de <b>" + reponses[1] + " €</b>. " + phrase + "</p>" +
+    "<p>Si seulement 2 % de ces clients revenaient une fois de plus grâce à un rappel :</p>" +
+    "<div class='gros'>+ " + gain + " € par mois</div>" +
+    "<p class='note'>C'est une estimation, pas une promesse : j'ai pris l'hypothèse prudente de 2 % de clients qui reviennent, multipliée par votre panier moyen. Le vrai chiffre dépend de votre restaurant.</p>" +
+    "<a class='bouton' href='questions.html'>Refaire le calcul</a>";
+}
+afficher();
+</script>
+</body>
+</html>
