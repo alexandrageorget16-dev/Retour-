@@ -24,7 +24,6 @@
   .garantie { background: #EFE3D2; border-radius: 12px; padding: 16px; }
   details { background: #fff; border: 2px solid #D9C7B0; border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; }
   summary { font-weight: bold; font-size: 1.05rem; cursor: pointer; }
-  .champ { background: #FFE9A8; padding: 0 4px; }
 </style>
 </head>
 <body>
@@ -73,35 +72,4 @@
 
   <h2>Notre garantie</h2>
   <div class="garantie">
-    <p style="margin:0">Satisfait ou remboursé pendant <b>14 jours</b>. Si Retour ne vous convient pas, écrivez à <span class="champ">[VOTRE EMAIL]</span> : vous serez remboursé sous 5 jours ouvrés, sans justification.</p>
-  </div>
-
-  <h2>Questions fréquentes</h2>
-  <details>
-    <summary>Est-ce que ça marche pour mon restaurant ?</summary>
-    <p>Retour est pensé pour les restaurants, snacks, boulangeries et cafés qui vivent de clients réguliers. Si vous avez des clients qui peuvent revenir, il peut vous servir.</p>
-  </details>
-  <details>
-    <summary>Combien de temps ça prend ?</summary>
-    <p>Quelques minutes pour démarrer. Ensuite, les rappels partent sans que vous ayez à y penser.</p>
-  </details>
-  <details>
-    <summary>Comment j'arrête ?</summary>
-    <p>Vous résiliez en ligne à tout moment, en quelques clics, sans nous écrire.</p>
-  </details>
-  <details>
-    <summary>À quoi sert exactement ce que je paie ?</summary>
-    <p>À l'envoi automatique des rappels, à l'offre de retour à usage unique pour chaque client, et au compteur qui montre combien de clients sont revenus.</p>
-  </details>
-
-  <p class="note" style="margin-top:32px"><a href="questions.html" style="color:#6B5646">Refaire le calcul</a></p>
-</main>
-<script>
-var g = new URLSearchParams(location.search).get("g");
-if (g && /^[0-9]{1,6}$/.test(g)) {
-  document.getElementById("gain").innerText = "+ " + g + " € par mois";
-  document.getElementById("gain-bloc").style.display = "block";
-}
-</script>
-</body>
-</html>
+    <p style="margin:0">Satisfait ou remboursé pendant <b>14 jours</b>. Si Retour ne vous convient pas, écrivez à 
