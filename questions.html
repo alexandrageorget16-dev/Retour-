@@ -79,17 +79,15 @@ function resultat() {
     "<p>Si seulement 2 % de ces clients revenaient une fois de plus grâce à un rappel :</p>" +
     "<div class='gros'>+ " + gain + " € par mois</div>" +
     "<p class='note'>C'est une estimation, pas une promesse : j'ai pris l'hypothèse prudente de 2 % de clients qui reviennent, multipliée par votre panier moyen (en supposant 26 jours d'ouverture par mois). Le vrai chiffre dépend de votre restaurant.</p>" +
-
     "<h2>Votre premier rappel, prêt à envoyer</h2>" +
     "<div class='sms' id='sms'>Bonjour [Prénom], c'était un plaisir de vous recevoir chez [Nom du restaurant]. Cela fait un moment : passez nous voir cette semaine, on vous réserve un petit cadeau. À bientôt !</div>" +
     "<button class='copier' id='btn-copier' onclick='copier()'>Copier le message</button>" +
     "<p class='note'>Remplacez [Prénom] et [Nom du restaurant], puis envoyez-le à un client qui n'est pas venu depuis un moment.</p>" +
-
     "<h2>Ce que Retour fait ensuite, sans vous</h2>" +
     "<div class='verrou'><b>Verrouillé.</b> Envoi automatique du rappel, au bon moment pour chaque client.</div>" +
     "<div class='verrou'><b>Verrouillé.</b> Offre de retour à usage unique pour chaque client.</div>" +
     "<div class='verrou'><b>Verrouillé.</b> Compteur : clients revenus et chiffre généré.</div>" +
-    "<a class='bouton' href='#'>Débloquer Retour</a>" +
+    "<a class='bouton' href='paywall.html?g=" + gain + "'>Débloquer Retour</a>" +
     "<a class='lien' href='questions.html'>Refaire le calcul</a>";
 }
 afficher();
